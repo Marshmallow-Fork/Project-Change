@@ -1,4 +1,4 @@
-package com.marshmallow.change.entities;
+package com.marshmallow.change.backend.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

@@ -1,6 +1,6 @@
-package com.marshmallow.change.utilities;
+package com.marshmallow.change.backend.utilities;
 
-import com.marshmallow.change.entities.Entity;
+import com.marshmallow.change.backend.objects.Entity;
 
 /**
  * Contains information on 

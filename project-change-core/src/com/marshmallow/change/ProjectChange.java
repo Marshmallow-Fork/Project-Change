@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.marshmallow.change.backend.handlers.InputHandler;
 import com.marshmallow.change.frames.Frame;
 import com.marshmallow.change.frames.SplashFrame;
-import com.marshmallow.change.utilities.InputHandler;
 
 public class ProjectChange extends ApplicationAdapter {
 	

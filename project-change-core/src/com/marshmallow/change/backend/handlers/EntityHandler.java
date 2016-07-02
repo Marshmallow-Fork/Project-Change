@@ -1,9 +1,10 @@
-package com.marshmallow.change.utilities;
+package com.marshmallow.change.backend.handlers;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.marshmallow.change.entities.Entity;
+import com.marshmallow.change.backend.objects.Entity;
+import com.marshmallow.change.backend.utilities.CollisionCallback;
 
 public class EntityHandler {
 
@@ -20,7 +21,7 @@ public class EntityHandler {
 		
 		for(int i = 0; i < entities.size; i++) {
 			for(int n = 0; n < entities.size; n++) {
-				if (!entities.get(i).equals(entities.get(n)) && entities.get(i).getBounds().contains(entities.get(n).getBounds())) {
+				if (i != n && entities.get(i).getBounds().overlaps(entities.get(n).getBounds())) {
 					entities.get(i).onCollision(new CollisionCallback(entities.get(i), entities.get(n)));
 				}
 			}

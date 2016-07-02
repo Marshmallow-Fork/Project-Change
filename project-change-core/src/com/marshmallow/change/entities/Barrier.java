@@ -1,6 +1,7 @@
 package com.marshmallow.change.entities;
 
 import com.badlogic.gdx.files.FileHandle;
+import com.marshmallow.change.backend.objects.Entity;
 
 public class Barrier extends Entity {
 

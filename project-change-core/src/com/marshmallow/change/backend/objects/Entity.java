@@ -1,4 +1,4 @@
-package com.marshmallow.change.entities;
+package com.marshmallow.change.backend.objects;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.marshmallow.change.utilities.CollisionCallback;
+import com.marshmallow.change.backend.utilities.CollisionCallback;
 
 public class Entity implements CollisionEntity{
 	

@@ -1,6 +1,6 @@
-package com.marshmallow.change.entities;
+package com.marshmallow.change.backend.objects;
 
-import com.marshmallow.change.utilities.CollisionCallback;
+import com.marshmallow.change.backend.utilities.CollisionCallback;
 
 public interface CollisionEntity {
 
