@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Map name="Test Floor 1" background="">
+	<Barrier x="0" y="0" width="32" height="32" originX="16" originY="16" texture="images/icon32.png" />
+</Map>
