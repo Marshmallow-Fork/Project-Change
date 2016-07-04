@@ -2,6 +2,8 @@ package com.marshmallow.change.backend.handlers;
 
 
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.math.Vector2;
+import com.marshmallow.change.backend.utilities.Buttons;
 
 public class InputHandler extends InputAdapter {
 	
@@ -11,6 +13,8 @@ public class InputHandler extends InputAdapter {
 	private static Boolean cState[] = new Boolean[numKeys];
 	private static Boolean p[] = new Boolean[numKeys];
 	private static Boolean r[] = new Boolean[numKeys];
+	
+	private static Vector2 PAD = new Vector2(0,0);
 	
 	public InputHandler() {
 		for (int i = 0; i < numKeys; i++) {
@@ -35,6 +39,28 @@ public class InputHandler extends InputAdapter {
 				r[i] = false;
 			}
 		}
+		
+		if((cState[Buttons.UP] || cState[Buttons.UP_ALT]) && !(cState[Buttons.DOWN] || cState[Buttons.DOWN_ALT])) {
+			PAD.set(PAD.x, 1);
+		}
+		else if((cState[Buttons.DOWN] || cState[Buttons.DOWN_ALT]) && !(cState[Buttons.UP] || cState[Buttons.UP_ALT])) {
+			PAD.set(PAD.x, -1);
+		}
+		else {
+			PAD.set(PAD.x, 0);
+		}
+		
+		if((cState[Buttons.LEFT] || cState[Buttons.LEFT_ALT]) && !(cState[Buttons.RIGHT] || cState[Buttons.RIGHT_ALT])) {
+			PAD.set(1, PAD.y);
+		}
+		else if((cState[Buttons.RIGHT] || cState[Buttons.RIGHT_ALT]) && !(cState[Buttons.LEFT] || cState[Buttons.LEFT_ALT])) {
+			PAD.set(-1, PAD.y);
+		}
+		else {
+			PAD.set(0, PAD.y);
+		}
+		
+		PAD.setLength(1);
 	}
 	
 	public static boolean isKeyPressed(int keycode) {
