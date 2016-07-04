@@ -1,4 +1,4 @@
-package com.marshmallow.change.frames;
+package com.marshmallow.change.backend.objects;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.graphics.OrthographicCamera;

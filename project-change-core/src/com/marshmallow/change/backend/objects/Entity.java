@@ -12,12 +12,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.marshmallow.change.backend.utilities.CollisionCallback;
 
-public class Entity implements CollisionEntity{
+public class Entity implements Collidible{
 	
 	private String[] tag;
 	
-	private Texture img;
-	private Sprite spr;
+	private Texture image;
+	private Sprite sprite;
 	
 	private Vector2 pos;
 	private Vector2 origin;
@@ -46,22 +46,23 @@ public class Entity implements CollisionEntity{
 		rotation = 0.0f;
 		rotate(degrees);
 		
-		img = new Texture(texture);
-		spr = new Sprite(img);
+		image = new Texture(texture);
+		sprite = new Sprite(image);
 		
 		sRen = new ShapeRenderer();
 	}
 
-	public void update(float delta) {
-		spr.setPosition(pos.x - origin.x, pos.y - origin.y);
-		spr.setRotation(rotation);
+	
+ 	public void update(float delta) {
+ 		bounds.setPosition(pos.x - origin.x, pos.y - origin.y);
+		sprite.setPosition(pos.x - origin.x, pos.y - origin.y);
 		
 	}
 	
 	/**
 	 * Must be surrounded by {@link SpriteBatch#begin() SpriteBatch.begin()} and {@link SpriteBatch#end() SpriteBatch.end()} */
 	public void draw(SpriteBatch batch) {
-		spr.draw(batch);
+		sprite.draw(batch);
 	}
 	
 	public void debugDraw(OrthographicCamera cam) {
@@ -76,7 +77,7 @@ public class Entity implements CollisionEntity{
 	
 	public void dispose() {
 		sRen.dispose();
-		img.dispose();
+		image.dispose();
 	}
 	
 	public void onCollision(CollisionCallback callback) {}
@@ -84,12 +85,16 @@ public class Entity implements CollisionEntity{
 	public Rectangle getBounds() { return bounds; }
 	public Vector2 getPosition() { return pos; }
 	public Vector2 getOrigin() { return origin; }
-	public float getRotation() { return rotation; }
 	
 	public void setBounds(Rectangle param) { bounds.set(param); }
-	public void setPosition(Vector2 param) { pos.set(param); }
-	public void setPosition(float x, float y) { pos.set(x, y); }
-	public void setOrigin(Vector2 param) { origin.set(param); }
-	public void setOrigin(float x, float y) { origin.set(x, y); }
-	public void setRotation(float param) { rotation = param; }
+
+	public void setX(float val) { this.pos.x = val; }
+	public void setY(float val) { this.pos.y = val; }
+	public void setPosition(float x, float y) { this.pos.set(x, y); }
+	public void setPosition(Vector2 pos) { this.pos.set(pos); }
+	
+	public void setOriginX(float val) { this.origin.x = val; }
+	public void setOriginY(float val) { this.origin.y = val; }
+	public void setOrigin(float x, float y) { this.origin.set(x, y); }
+	public void setOrigin(Vector2 origin) { this.origin.set(origin); }
 }

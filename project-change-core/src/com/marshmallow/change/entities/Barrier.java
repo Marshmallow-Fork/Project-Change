@@ -2,6 +2,7 @@ package com.marshmallow.change.entities;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.marshmallow.change.backend.objects.Entity;
+import com.marshmallow.change.backend.utilities.CollisionCallback;
 
 public class Barrier extends Entity {
 
@@ -10,6 +11,12 @@ public class Barrier extends Entity {
 			FileHandle texture) {
 		super(x, y, originX, originY, width, height, scaleX, scaleY, degrees,
 				texture);
+	}
+	
+	@Override
+	public void onCollision(CollisionCallback c) {
+		System.out.println("Collision");
+		c.getOther().setPosition((float)Math.random() * 300 - 150, (float)Math.random() * 300 - 150);
 	}
 
 }

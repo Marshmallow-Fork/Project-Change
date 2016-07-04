@@ -4,17 +4,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.marshmallow.change.backend.handlers.EntityHandler;
+import com.marshmallow.change.backend.handlers.InputHandler;
 import com.marshmallow.change.backend.objects.Entity;
+import com.marshmallow.change.backend.objects.Frame;
+import com.marshmallow.change.backend.utilities.Buttons;
 import com.marshmallow.change.entities.Barrier;
 
 public class SplashFrame implements Frame {
 
-	public EntityHandler entities;
+	public EntityHandler barriers;
 	
 	public SplashFrame() {
-		entities = new EntityHandler();
-		entities.addEntity(new Barrier(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
-		entities.addEntity(new Barrier(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
+		barriers = new EntityHandler();
+		barriers.addEntity(new Barrier(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
+		barriers.addEntity(new Barrier(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
 	}
 
 	@Override
@@ -24,16 +27,19 @@ public class SplashFrame implements Frame {
 
 	@Override
 	public void update(float delta) {
-		 entities.update(delta);
+		barriers.update(delta);
+		if(InputHandler.isKeyPressed(Buttons.LEFT)) {
+			System.out.println("BOOP!");
+		}
 	}
 
 	@Override
 	public void render(SpriteBatch batch) {
-		entities.render(batch);
+		barriers.render(batch);
 	}
 	
 	public void debugRender(OrthographicCamera cam) {
-		entities.debugRender(cam);
+		barriers.debugRender(cam);
 	}
 
 	@Override
