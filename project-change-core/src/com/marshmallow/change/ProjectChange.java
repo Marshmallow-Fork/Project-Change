@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.marshmallow.change.backend.handlers.InputHandler;
-import com.marshmallow.change.frames.Frame;
+import com.marshmallow.change.backend.objects.Frame;
 import com.marshmallow.change.frames.SplashFrame;
 
 public class ProjectChange extends ApplicationAdapter {
@@ -54,7 +54,7 @@ public class ProjectChange extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		input.preUpdate();
+		input.update();
 		currentFrame.update(Gdx.graphics.getDeltaTime());
 		cam.update();
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -62,7 +62,6 @@ public class ProjectChange extends ApplicationAdapter {
 		currentFrame.render(batch);
 		batch.end();
 		if(DEBUG == true) { currentFrame.debugRender(cam); }
-		input.postUpdate();
 	}
 	
 	public static void changeFrame(Frame frame) {
