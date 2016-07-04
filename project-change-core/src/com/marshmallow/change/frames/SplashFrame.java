@@ -9,6 +9,7 @@ import com.marshmallow.change.backend.objects.Entity;
 import com.marshmallow.change.backend.objects.Frame;
 import com.marshmallow.change.backend.utilities.Buttons;
 import com.marshmallow.change.entities.Barrier;
+import com.marshmallow.change.entities.Player;
 
 public class SplashFrame implements Frame {
 
@@ -16,8 +17,7 @@ public class SplashFrame implements Frame {
 	
 	public SplashFrame() {
 		barriers = new EntityHandler();
-		barriers.addEntity(new Barrier(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
-		barriers.addEntity(new Barrier(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
+		barriers.addEntity(new Player(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
 	}
 
 	@Override

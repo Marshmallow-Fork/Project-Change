@@ -51,10 +51,10 @@ public class InputHandler extends InputAdapter {
 		}
 		
 		if((cState[Buttons.LEFT] || cState[Buttons.LEFT_ALT]) && !(cState[Buttons.RIGHT] || cState[Buttons.RIGHT_ALT])) {
-			PAD.set(1, PAD.y);
+			PAD.set(-1, PAD.y);
 		}
 		else if((cState[Buttons.RIGHT] || cState[Buttons.RIGHT_ALT]) && !(cState[Buttons.LEFT] || cState[Buttons.LEFT_ALT])) {
-			PAD.set(-1, PAD.y);
+			PAD.set(1, PAD.y);
 		}
 		else {
 			PAD.set(0, PAD.y);
@@ -62,6 +62,8 @@ public class InputHandler extends InputAdapter {
 		
 		PAD.setLength(1);
 	}
+	
+	public static Vector2 getPAD() { return PAD.cpy(); }
 	
 	public static boolean isKeyPressed(int keycode) {
 		return p[keycode];

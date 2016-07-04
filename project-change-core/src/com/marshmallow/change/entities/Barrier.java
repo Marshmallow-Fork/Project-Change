@@ -2,9 +2,10 @@ package com.marshmallow.change.entities;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.marshmallow.change.backend.objects.Entity;
+import com.marshmallow.change.backend.objects.SolidEntity;
 import com.marshmallow.change.backend.utilities.CollisionCallback;
 
-public class Barrier extends Entity {
+public class Barrier extends SolidEntity {
 
 	public Barrier(float x, float y, float originX, float originY, float width,
 			float height, float scaleX, float scaleY, float degrees,
