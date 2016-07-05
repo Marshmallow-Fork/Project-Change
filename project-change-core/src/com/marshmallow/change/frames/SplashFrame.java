@@ -1,6 +1,7 @@
 package com.marshmallow.change.frames;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.marshmallow.change.backend.handlers.EntityHandler;
@@ -13,11 +14,11 @@ import com.marshmallow.change.entities.Player;
 
 public class SplashFrame implements Frame {
 
-	public EntityHandler barriers;
+	public EntityHandler entities;
 	
 	public SplashFrame() {
-		barriers = new EntityHandler();
-		barriers.addEntity(new Player(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
+		entities = new EntityHandler();
+		entities.addEntity(new Player(0, 0, 16, 16, 32, 32, 1, 1, 0, Gdx.files.internal("images/icon32.png")));
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class SplashFrame implements Frame {
 
 	@Override
 	public void update(float delta) {
-		barriers.update(delta);
+		entities.update(delta);
 		if(InputHandler.isKeyPressed(Buttons.LEFT)) {
 			System.out.println("BOOP!");
 		}
@@ -35,11 +36,11 @@ public class SplashFrame implements Frame {
 
 	@Override
 	public void render(SpriteBatch batch) {
-		barriers.render(batch);
+		entities.render(batch);
 	}
 	
 	public void debugRender(OrthographicCamera cam) {
-		barriers.debugRender(cam);
+		entities.debugRender(cam);
 	}
 
 	@Override

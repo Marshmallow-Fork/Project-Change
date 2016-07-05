@@ -8,8 +8,10 @@ import com.marshmallow.change.backend.handlers.InputHandler;
 public class MovableEntity extends SolidEntity {
 
 	private float direction;
-	private float speed, maxSpeed;
-	private float accel, friction;
+	private float maxSpeed;
+	private float friction, iFr, accel;
+	private Vector2 nA, oA, dA, speed;
+	private Vector2 nF;
 	
 	public MovableEntity(float x, float y, float originX, float originY,
 			float width, float height, float scaleX, float scaleY,
@@ -17,10 +19,15 @@ public class MovableEntity extends SolidEntity {
 		super(x, y, originX, originY, width, height, scaleX, scaleY, degrees,
 				texture);
 		direction = 0;
-		speed = 0;
+		speed = new Vector2();
 		maxSpeed = 5;
-		accel = 0;
-		friction = 3;
+		nA = new Vector2();
+		oA = new Vector2();
+		oA = new Vector2();
+		friction = 0.99f;
+		iFr = 1/(1-friction) - 1;
+		accel = 3;
+		nF = new Vector2();
 	}
 	
 	public MovableEntity() {
@@ -31,16 +38,38 @@ public class MovableEntity extends SolidEntity {
 	public void update(float delta) {
 		super.update(delta);
 		
-		Vector2 temp = InputHandler.getPAD(); 
+		nF.scl(0);
+		nA = InputHandler.getPAD(); 
 		
-		accel = temp.len() * 5;
-		if(accel > 0) {
-			direction = temp.angleRad();
+		//Add Anti Movement Acceleration
+		float temp = maxSpeed * friction * delta;
+		if(speed.isZero(temp)) {
+			speed.scl(0);
 		}
+		dA = speed.cpy().setLength(temp);
+		System.out.println("Deccel - " + dA.len());
+		nF.add(dA.scl(-1));
 		
-		speed = Math.min(maxSpeed, delta * (accel - friction) + speed);
-		if(speed < 0) { speed = 0; }
+		//Add Movement Acceleration
+		nA.scl(iFr * delta * accel);
+		System.out.println("Accel  - " + nA.len());
+		nF.add(nA); 
 		
-		pos.add((float)Math.cos(direction) * speed, (float)Math.sin(direction) * speed);
+		speed.add(nF);
+		
+		speed.limit(maxSpeed);
+		pos.add(speed);
+		
+		//oA.lerp(nA.scl(accel), accel * delta * (1 - friction));
+		//if(oA.len() > 0) {
+		//	direction = oA.angleRad();
+		//}
+		
+		//if(oA.len() > 0) {
+		//	speed.add(oA.cpy().scl(accel * delta * (1 - friction)));
+		//}
+		//else {
+		//	speed.lerp(speed.cpy().scl(-1), delta * (1 - friction));
+		//}
 	}
 }
